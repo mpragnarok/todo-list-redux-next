@@ -1,0 +1,57 @@
+# ignore
+*.env
+*.env.local
+*.env.*.local
+
+# Ingore code coverage
+coverage/
+.nyc_output/
+
+# Ingore file upload
+temp/
+# upload/
+
+# local file system
+.DS_Store
+*.DS_Store
+
+# Dependency directories
+node_modules/
+
+# Secure Key
+super_secret.txt
+
+# docker data
+datadir/
+
+# ignore Redis file
+dump.rdb
+
+# ignore assests
+assests/
+
+# ignore codecov
+codecov.yml
+
+# ignore ngrok
+ngrok
+*.exe
+
+# ignore Jenkins local debug
+jenkins.sh
+
+# root.cnf and server.cnf
+*.cnf
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.vscode
