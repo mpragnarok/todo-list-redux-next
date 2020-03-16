@@ -2,7 +2,7 @@ import { Breadcrumb, Table, Row, Col, Button } from "antd";
 import { CheckOutlined, MinusOutlined } from "@ant-design/icons";
 const { Column, ColumnGroup } = Table;
 import React from "react";
-import "../static/sass/TodoTable.scss";
+import "../public/static/sass/TodoTable.scss";
 class TodoTable extends React.Component {
   render() {
     const data = [

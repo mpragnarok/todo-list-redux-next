@@ -1,7 +1,7 @@
 import { Layout, PageHeader, Menu } from "antd";
 const { SubMenu } = Menu;
 const { Header, Footer, Content } = Layout;
-import "../static/sass/Layout.scss";
+import "../public/static/sass/Layout.scss";
 import TodoTable from "../components/TodoTable";
 const DefaultLayout = props => (
   <Layout>

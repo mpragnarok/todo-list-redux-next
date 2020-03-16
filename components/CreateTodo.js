@@ -1,23 +1,20 @@
 import React from "react";
-import "../static/sass/CreateTodo.scss";
+import "../public/static/sass/CreateTodo.scss";
 import { Row, Col, Input, Button, Breadcrumb } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 
 class CreateTodo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todoText: ""
-    };
-    this.onChangeTodoText = this.onChangeTodoText.bind(this);
-  }
+  state = {
+    todoText: ""
+  };
 
-  onChangeTodoText(e) {
+  onChangeTodoText = event => {
     this.setState({
-      todoText: e.target.value
+      todoText: event.target.value
     });
-  }
+  };
   render() {
+    const { todoText } = this.state;
     return (
       <div className="create-todo">
         <Row gutter={[16, 16]} justify="center" align="middle">
@@ -25,13 +22,31 @@ class CreateTodo extends React.Component {
         </Row>
         <Row gutter={[16, 16]} justify="center" align="middle">
           <Col span={8}>
-            <Input placeholder="Create todo here"></Input>
+            <Input
+              placeholder="Create todo here"
+              value={todoText}
+              onChange={this.onChangeTodoText}
+            ></Input>
           </Col>
           <Col span={4}>
-            <Button danger type="primary" className="button-margin">
+            <Button
+              danger
+              type="primary"
+              className="button-margin"
+              onClick={() => {
+                this.setState({ todoText: "" });
+              }}
+            >
               Cancel
-            </Button>{" "}
-            <Button type="primary" icon={<PlusCircleOutlined />}>
+            </Button>
+            <Button
+              type="primary"
+              icon={<PlusCircleOutlined />}
+              onClick={() => {
+                // this.props.addTodo(this.state.todoText);
+                this.setState({ todoText: "" });
+              }}
+            >
               Add Todo
             </Button>
           </Col>
