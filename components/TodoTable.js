@@ -1,5 +1,6 @@
 import { Breadcrumb, Table, Row, Col } from "antd";
 import React from "react";
+import "../static/sass/TodoTable.scss";
 class TodoTable extends React.Component {
   render() {
     const dataSource = [
@@ -41,14 +42,6 @@ class TodoTable extends React.Component {
             <Table dataSource={dataSource} columns={columns} />
           </Col>
         </Row>
-
-        <style jsx>
-          {`
-            .todo-table {
-              margin-top: 50px;
-            }
-          `}
-        </style>
       </div>
     );
   }
