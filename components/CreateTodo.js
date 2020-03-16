@@ -1,4 +1,5 @@
 import React from "react";
+import "../static/sass/CreateTodo.scss";
 import { Row, Col, Input, Button } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 
@@ -27,7 +28,7 @@ class CreateTodo extends React.Component {
             <Input placeholder="Create todo here"></Input>
           </Col>
           <Col span={4}>
-            <Button danger type="primary">
+            <Button danger type="primary" className="button-margin">
               Cancel
             </Button>{" "}
             <Button type="primary" icon={<PlusCircleOutlined />}>
@@ -35,12 +36,6 @@ class CreateTodo extends React.Component {
             </Button>
           </Col>
         </Row>
-
-        <style jsx>{`
-          .create-todo {
-            margin-top: 50px;
-          }
-        `}</style>
       </div>
     );
   }
