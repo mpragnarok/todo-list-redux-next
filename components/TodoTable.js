@@ -2,6 +2,7 @@ import { Breadcrumb, Table, Row, Col, Button } from "antd";
 import { CheckOutlined, MinusOutlined } from "@ant-design/icons";
 const { Column, ColumnGroup } = Table;
 import React from "react";
+
 import "../public/static/sass/TodoTable.scss";
 class TodoTable extends React.Component {
   render() {
@@ -15,7 +16,7 @@ class TodoTable extends React.Component {
         todos: "Finish todo list side project"
       },
       {
-        key: "2",
+        key: "3",
         todos: "Look up SASS doc"
       }
     ];

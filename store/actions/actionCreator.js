@@ -5,7 +5,7 @@ import {
   SET_VISIBILITY_FILTER
 } from "./actionsTypes";
 
-let ToDoId = 2;
+let ToDoId = 3;
 
 export const addTodo = text => ({
   type: ADD_TODO,
