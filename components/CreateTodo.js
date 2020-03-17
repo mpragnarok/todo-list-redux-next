@@ -1,6 +1,9 @@
 import React from "react";
 import "../public/static/sass/CreateTodo.scss";
 import { Row, Col, Input, Button, Breadcrumb } from "antd";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { addTodo } from "../store/actions/actionCreator";
 import { PlusCircleOutlined } from "@ant-design/icons";
 
 class CreateTodo extends React.Component {
@@ -13,6 +16,7 @@ class CreateTodo extends React.Component {
       todoText: event.target.value
     });
   };
+
   render() {
     const { todoText } = this.state;
     return (
@@ -43,7 +47,7 @@ class CreateTodo extends React.Component {
               type="primary"
               icon={<PlusCircleOutlined />}
               onClick={() => {
-                // this.props.addTodo(this.state.todoText);
+                this.props.addTodo(this.state.todoText);
                 this.setState({ todoText: "" });
               }}
             >
@@ -68,4 +72,13 @@ class CreateTodo extends React.Component {
   }
 }
 
-export default CreateTodo;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      addTodo
+    },
+    dispatch
+  );
+};
+
+export default connect(null, mapDispatchToProps)(CreateTodo);

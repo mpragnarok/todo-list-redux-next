@@ -9,7 +9,7 @@ let ToDoId = 2;
 
 export const addTodo = text => ({
   type: ADD_TODO,
-  id: TodoId++,
+  id: ToDoId++,
   text
 });
 
