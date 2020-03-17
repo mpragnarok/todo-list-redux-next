@@ -1,6 +1,6 @@
 import React from "react";
 import "../public/static/sass/CreateTodo.scss";
-import { Row, Col, Input, Button, Breadcrumb } from "antd";
+import { Row, Col, Input, Button } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addTodo } from "../store/actions/actionCreator";
@@ -54,18 +54,6 @@ class CreateTodo extends React.Component {
               Add Todo
             </Button>
           </Col>
-        </Row>
-        <Row gutter={[16, 16]} justify="center" align="middle">
-          <Breadcrumb className="">
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <a href="">Application Center</a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <a href="">Application List</a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>An Application</Breadcrumb.Item>
-          </Breadcrumb>
         </Row>
       </div>
     );
