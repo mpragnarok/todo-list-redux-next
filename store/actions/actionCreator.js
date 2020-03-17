@@ -2,7 +2,8 @@ import {
   ADD_TODO,
   REMOVE_TODO,
   TOGGLE_TODO,
-  SET_VISIBILITY_FILTER
+  SET_VISIBILITY_FILTER,
+  UPDATE_TODO
 } from "./actionsTypes";
 
 let ToDoId = 3;
@@ -15,6 +16,11 @@ export const addTodo = text => ({
 
 export const deleteTodo = id => ({
   type: REMOVE_TODO,
+  id: id
+});
+
+export const updateTodo = id => ({
+  type: UPDATE_TODO,
   id: id
 });
 
