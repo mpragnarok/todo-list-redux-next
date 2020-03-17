@@ -1,17 +1,17 @@
 // if you want to show initial data :)
 const INITIAL_DATA = [
   {
-    key: 0,
+    id: 0,
     text: "Make dinner",
     completed: true
   },
   {
-    key: 1,
+    id: 1,
     text: "Finish todo list side project",
     completed: false
   },
   {
-    key: 2,
+    id: 2,
     text: "Look up SASS doc",
     completed: false
   }
@@ -25,14 +25,14 @@ const TodoReducer = (state = INITIAL_DATA, action) => {
       return [
         ...state,
         {
-          key: action.id,
+          id: action.id,
           text: action.text,
           completed: false
         }
       ];
     case TOGGLE_TODO:
       return state.map(todo =>
-        todo.id === action ? { ...todo, completed: !todo.completed } : todo
+        todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
       );
 
     case REMOVE_TODO:

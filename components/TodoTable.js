@@ -52,7 +52,6 @@ class TodoTable extends React.Component {
                 title="Todos"
                 dataIndex="text"
                 key="text"
-                className=""
                 render={(text, row) => (
                   <span
                     style={{
@@ -69,14 +68,19 @@ class TodoTable extends React.Component {
               <Column
                 title="Actions"
                 key="action"
-                render={() => (
+                render={(text, row) => (
                   <span>
                     <Button
                       shape="circle"
                       icon={<CheckOutlined />}
                       className="action-button"
+                      onClick={() => this.props.toggleTodo(row.id)}
                     />
-                    <Button shape="circle" icon={<MinusOutlined />} />
+                    <Button
+                      shape="circle"
+                      icon={<MinusOutlined />}
+                      onClick={() => this.props.deleteTodo(row.id)}
+                    />
                   </span>
                 )}
               />
