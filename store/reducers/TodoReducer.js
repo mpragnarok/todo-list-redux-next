@@ -3,7 +3,7 @@ const INITIAL_DATA = [
   {
     key: 0,
     text: "Make dinner",
-    completed: false
+    completed: true
   },
   {
     key: 1,

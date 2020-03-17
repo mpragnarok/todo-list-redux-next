@@ -48,7 +48,24 @@ class TodoTable extends React.Component {
         <Row gutter={[16, 16]} justify="center" align="middle">
           <Col span={12}>
             <Table dataSource={this.props.todos}>
-              <Column title="Todos" dataIndex="text" key="text" className="" />
+              <Column
+                title="Todos"
+                dataIndex="text"
+                key="text"
+                className=""
+                render={(text, row) => (
+                  <span
+                    style={{
+                      textDecoration: row.completed ? "line-through" : "none",
+                      color: row.completed ? "gray" : "black"
+                    }}
+                  >
+                    {text}
+                    {row.completed ? "(completed)" : ""}
+                  </span>
+                )}
+              />
+
               <Column
                 title="Actions"
                 key="action"
