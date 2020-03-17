@@ -47,7 +47,7 @@ class TodoTable extends React.Component {
         </Row>
         <Row gutter={[16, 16]} justify="center" align="middle">
           <Col span={12}>
-            <Table dataSource={this.props.todos}>
+            <Table dataSource={this.props.todos} rowKey={todo => todo.id}>
               <Column
                 title="Todos"
                 dataIndex="text"
@@ -67,6 +67,7 @@ class TodoTable extends React.Component {
 
               <Column
                 title="Actions"
+                dataIndex="action"
                 key="action"
                 render={(text, row) => (
                   <span>
