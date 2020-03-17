@@ -2,17 +2,17 @@
 const INITIAL_DATA = [
   {
     key: 0,
-    todos: "Make dinner",
+    text: "Make dinner",
     completed: false
   },
   {
     key: 1,
-    todos: "Finish todo list side project",
+    text: "Finish todo list side project",
     completed: false
   },
   {
     key: 2,
-    todos: "Look up SASS doc",
+    text: "Look up SASS doc",
     completed: false
   }
 ];
@@ -26,7 +26,7 @@ const TodoReducer = (state = INITIAL_DATA, action) => {
         ...state,
         {
           key: action.id,
-          todos: action.text,
+          text: action.text,
           completed: false
         }
       ];

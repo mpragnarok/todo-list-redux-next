@@ -21,7 +21,6 @@ import "../public/static/sass/TodoTable.scss";
 
 class TodoTable extends React.Component {
   tabKeyToActionType = key => {
-    console.log("key: ", key);
     switch (key) {
       case "1":
         this.props.setVisibilityFilter(SHOW_ALL);
@@ -49,7 +48,7 @@ class TodoTable extends React.Component {
         <Row gutter={[16, 16]} justify="center" align="middle">
           <Col span={12}>
             <Table dataSource={this.props.todos}>
-              <Column title="Todos" dataIndex="todos" key="todos" />
+              <Column title="Todos" dataIndex="text" key="text" className="" />
               <Column
                 title="Actions"
                 key="action"
