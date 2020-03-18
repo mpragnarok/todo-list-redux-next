@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import {
   deleteTodo,
   toggleTodo,
+  updateTodo,
   setVisibilityFilter
 } from "../store/actions/actionCreator";
 import {
@@ -99,80 +100,52 @@ const EditableCell = ({
 class TodoTable extends React.Component {
   constructor(props) {
     super(props);
+    this.handleSave = this.handleSave.bind(this);
     this.columns = [
       {
-        title: "name",
-        dataIndex: "name",
-        width: "30%",
-        editable: true
+        title: "Todos",
+        dataIndex: "text",
+        width: "80%",
+        editable: true,
+        render: (text, row) => (
+          <span
+            style={{
+              textDecoration: row.completed ? "line-through" : "none",
+              color: row.completed ? "gray" : "black"
+            }}
+          >
+            {text}
+            {row.completed ? "(completed)" : ""}
+          </span>
+        )
       },
       {
-        title: "age",
-        dataIndex: "age"
-      },
-      { title: "address", dataIndex: "address" },
-      {
-        title: "operation",
-        dataIndex: "operation",
+        title: "Actions",
+        dataIndex: "action",
         render: (text, record) =>
-          this.state.dataSource.length >= 1 ? (
-            <Popconfirm
-              title="Sure to delete?"
-              onConfirm={() => this.handleDelete(record.key)}
-            >
-              <a>Delete</a>
-            </Popconfirm>
+          this.props.todos.length >= 1 ? (
+            <div>
+              <Button
+                shape="circle"
+                icon={<CheckOutlined />}
+                className="action-button"
+                onClick={() => this.props.toggleTodo(record.id)}
+              />
+
+              <Popconfirm
+                title="Sure to delete?"
+                onConfirm={() => this.props.deleteTodo(record.id)}
+              >
+                <Button shape="circle" icon={<MinusOutlined />} />
+              </Popconfirm>
+            </div>
           ) : null
       }
     ];
-    this.state = {
-      dataSource: [
-        {
-          key: "0",
-          name: "Edward King 0",
-          age: "32",
-          address: "London, Park Lane no. 0"
-        },
-        {
-          key: "1",
-          name: "Edward King 1",
-          age: "32",
-          address: "London, Park Lane no. 1"
-        }
-      ],
-      count: 2
-    };
   }
-  handleDelete = key => {
-    const dataSource = [...this.state.dataSource];
 
-    this.setState({
-      dataSource: dataSource.filter(item => item.key !== key)
-    });
-  };
-
-  handleAdd = () => {
-    const { count, dataSource } = this.state;
-    const newData = {
-      key: count,
-      name: `Edward King ${count}`,
-      age: 32,
-      address: `London, Park Lane no. ${count}`
-    };
-    this.setState({
-      dataSource: [...dataSource, newData],
-      count: count + 1
-    });
-  };
-
-  handleSave = row => {
-    const newData = [...this.state.dataSource];
-    const index = newData.findIndex(item => row.key === item.key);
-    const item = newData[index];
-    newData.splice(index, 1, { ...item, ...row });
-    this.setState({
-      dataSource: newData
-    });
+  handleSave = record => {
+    this.props.updateTodo(record);
   };
   tabKeyToActionType = key => {
     switch (key) {
@@ -190,7 +163,7 @@ class TodoTable extends React.Component {
     }
   };
   render() {
-    const { dataSource } = this.state;
+    // const { dataSource } = this.state;
     const components = {
       body: {
         row: EditableRow,
@@ -214,20 +187,6 @@ class TodoTable extends React.Component {
     });
     return (
       <div className="todo-table">
-        <Button
-          onClick={this.handleAdd}
-          type="primary"
-          style={{ marginBottom: 16 }}
-        >
-          Add a row
-        </Button>
-        <Table
-          components={components}
-          rowClassName={() => "editable-row"}
-          bordered
-          dataSource={dataSource}
-          columns={columns}
-        />
         <Row gutter={[16, 16]} justify="center" align="middle">
           <Tabs onChange={this.tabKeyToActionType} type="card">
             <TabPane tab="All" key="1" />
@@ -237,45 +196,14 @@ class TodoTable extends React.Component {
         </Row>
         <Row gutter={[16, 16]} justify="center" align="middle">
           <Col span={12}>
-            <Table dataSource={this.props.todos} rowKey={todo => todo.id}>
-              <Column
-                title="Todos"
-                dataIndex="text"
-                key="text"
-                render={(text, row) => (
-                  <span
-                    style={{
-                      textDecoration: row.completed ? "line-through" : "none",
-                      color: row.completed ? "gray" : "black"
-                    }}
-                  >
-                    {text}
-                    {row.completed ? "(completed)" : ""}
-                  </span>
-                )}
-              />
-
-              <Column
-                title="Actions"
-                dataIndex="action"
-                key="action"
-                render={(text, row) => (
-                  <span>
-                    <Button
-                      shape="circle"
-                      icon={<CheckOutlined />}
-                      className="action-button"
-                      onClick={() => this.props.toggleTodo(row.id)}
-                    />
-                    <Button
-                      shape="circle"
-                      icon={<MinusOutlined />}
-                      onClick={() => this.props.deleteTodo(row.id)}
-                    />
-                  </span>
-                )}
-              />
-            </Table>
+            <Table
+              components={components}
+              rowClassName={() => "editable-row"}
+              bordered
+              dataSource={this.props.todos}
+              columns={columns}
+              rowKey={todo => todo.id}
+            />
           </Col>
         </Row>
       </div>
@@ -308,6 +236,7 @@ const mapDispatchToProps = dispatch => {
     {
       deleteTodo,
       toggleTodo,
+      updateTodo,
       setVisibilityFilter
     },
     dispatch

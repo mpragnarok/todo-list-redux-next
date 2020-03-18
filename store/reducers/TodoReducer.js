@@ -25,6 +25,9 @@ import {
 } from "../actions/actionsTypes";
 
 const TodoReducer = (state = INITIAL_DATA, action) => {
+  const numIndex = parseInt(action.id);
+  console.log("action", action);
+  console.log(state);
   switch (action.type) {
     case ADD_TODO:
       return [
@@ -41,12 +44,11 @@ const TodoReducer = (state = INITIAL_DATA, action) => {
       );
 
     case REMOVE_TODO:
-      const numIndex = parseInt(action.id);
       return state.filter(todo => todo.id !== numIndex);
 
     case UPDATE_TODO:
       return state.map(todo =>
-        todo.id === action.id ? { ...todo, text: state.text } : todo
+        todo.id === numIndex ? { ...todo, text: action.text } : todo
       );
 
     default:

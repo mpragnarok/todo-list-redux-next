@@ -19,14 +19,15 @@ export const deleteTodo = id => ({
   id: id
 });
 
-export const updateTodo = id => ({
-  type: UPDATE_TODO,
-  id: id
-});
-
 export const toggleTodo = id => ({
   type: TOGGLE_TODO,
   id: id
+});
+
+export const updateTodo = todo => ({
+  type: UPDATE_TODO,
+  id: todo.id,
+  text: todo.text
 });
 
 export const setVisibilityFilter = filter => ({
