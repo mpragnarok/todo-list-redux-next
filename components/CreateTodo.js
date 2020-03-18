@@ -47,8 +47,10 @@ class CreateTodo extends React.Component {
               type="primary"
               icon={<PlusCircleOutlined />}
               onClick={() => {
-                this.props.addTodo(this.state.todoText);
-                this.setState({ todoText: "" });
+                if (this.state.todoText.length > 0) {
+                  this.props.addTodo(this.state.todoText);
+                  this.setState({ todoText: "" });
+                }
               }}
             >
               Add Todo
