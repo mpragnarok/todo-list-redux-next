@@ -26,8 +26,7 @@ import {
 
 const TodoReducer = (state = INITIAL_DATA, action) => {
   const numIndex = parseInt(action.id);
-  console.log("action", action);
-  console.log(state);
+
   switch (action.type) {
     case ADD_TODO:
       return [
